@@ -1,0 +1,12 @@
+version: '3.1'
+  services:
+  admin:
+    image: oksanach397/admin-server:latest
+    restart: on-failure
+    ports:
+      - "9003:9003"
+  client:
+    image: oksanach397/client-service:latest
+    restart: on-failure
+    ports:
+      - "8080:8080"
