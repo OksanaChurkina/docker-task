@@ -5,8 +5,32 @@ services:
       restart: on-failure
       ports:
         - "9003:9003"
+      env_file:
+        .env
+
     client:
       image: oksanach397/client-service:latest
       restart: on-failure
       ports:
         - "8080:8080"
+      depends_on:
+        - admin
+        - mongo
+      env_file:
+        .env
+
+    mongo:
+      image: mongo
+      restart: always
+      env_file:
+        .env
+
+    mongo-express:
+       image: mongo-express
+       restart: always
+       ports:
+         - "8081:8081"
+       depends_on:
+         - mongo
+       env_file:
+         .env
